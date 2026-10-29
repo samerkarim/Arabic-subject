@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>النعت | شرح تفاعلي</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f8f4ec 0%, #e8e0d5 100%);
+      min-height: 100vh;
+      padding: clamp(1rem, 3vw, 2rem) clamp(0.8rem, 3vw, 1.5rem) 0;
+      line-height: 1.65;
+      color: #2d2a24;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* العناوين */
+    h1 {
+      font-size: clamp(1.9rem, 6vw, 3.2rem);
+      font-weight: 800;
+      color: #1e3a2f;
+      letter-spacing: -0.02em;
+      text-shadow: 2px 2px 0 rgba(200, 170, 120, 0.2);
+      margin-bottom: 0.5rem;
+      border-right: clamp(6px, 1.2vw, 10px) solid #b48c5c;
+      padding-right: clamp(0.8rem, 2vw, 1.5rem);
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: clamp(0.95rem, 2.6vw, 1.3rem);
+      color: #5e4b34;
+      margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 400;
+      border-bottom: 2px dashed #c9b28b;
+      padding-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 4.2vw, 2rem);
+      font-weight: 700;
+      color: #2a5a4a;
+      margin: clamp(1.5rem, 4vw, 2rem) 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.3;
+    }
+
+    h2::before {
+      content: "◈";
+      font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+      color: #b48c5c;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: clamp(1.15rem, 3.2vw, 1.5rem);
+      font-weight: 600;
+      color: #3b5e4e;
+      margin: clamp(1.3rem, 3.5vw, 1.8rem) 0 1rem;
+      padding-right: 0.5rem;
+      border-right: 5px solid #d4b48c;
+      line-height: 1.35;
+    }
+
+    h4 {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      color: #2a5a4a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      line-height: 1.35;
+    }
+
+    h4 span {
+      background: #b48c5c;
+      color: white;
+      border-radius: 40px;
+      padding: 0.1rem 0.9rem;
+      font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* البطاقات */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: clamp(1rem, 2.5vw, 1.8rem);
+      margin: clamp(1rem, 3vw, 2rem) 0;
+    }
+
+    .card {
+      background: #ffffffec;
+      backdrop-filter: blur(4px);
+      border-radius: clamp(16px, 4vw, 28px);
+      padding: clamp(1rem, 3vw, 1.6rem) clamp(1.1rem, 3.2vw, 1.8rem);
+      box-shadow: 0 15px 30px -12px rgba(60, 40, 20, 0.25);
+      border: 1px solid #e6d9c8;
+      transition: all 0.3s ease;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 35px -14px #8b6f4c;
+      border-color: #c9ad84;
+    }
+
+    .card p, .card li {
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+    }
+
+    /* الأمثلة */
+    .example {
+      background: #f2ede4;
+      border-radius: 18px;
+      padding: clamp(0.7rem, 2vw, 1rem) clamp(0.9rem, 2.5vw, 1.3rem);
+      margin: 1rem 0;
+      font-size: clamp(1rem, 2.8vw, 1.15rem);
+      border-right: 6px solid #b48c5c;
+      font-weight: 500;
+      color: #1f3d33;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .highlight {
+      background: #ffe6b3;
+      padding: 0.1rem 0.4rem;
+      border-radius: 10px;
+      font-weight: 700;
+      color: #5e3c1a;
+      border-bottom: 2px solid #b48c5c;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #2a5a4a;
+      color: white;
+      font-size: clamp(0.7rem, 1.9vw, 0.8rem);
+      border-radius: 30px;
+      padding: 0.15rem 1rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .note {
+      background: #fff6e5;
+      border-right: 6px solid #e6b85e;
+      padding: clamp(0.8rem, 2.2vw, 1rem) clamp(1rem, 2.8vw, 1.5rem);
+      border-radius: 16px;
+      margin: clamp(1rem, 2.5vw, 1.5rem) 0;
+      font-weight: 500;
+      box-shadow: 0 4px 8px rgba(200, 160, 80, 0.1);
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+    }
+
+    .warning {
+      background: #ffeee8;
+      border-right: 6px solid #c25734;
+      padding: clamp(0.8rem, 2.2vw, 1rem) clamp(1rem, 2.8vw, 1.5rem);
+      border-radius: 16px;
+      margin: clamp(1rem, 2.5vw, 1.5rem) 0;
+      font-weight: 500;
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+    }
+
+    /* الأزرار */
+    .toggle-btn {
+      background: #ffffff;
+      border: 1.5px solid #b48c5c;
+      color: #3d2e1e;
+      padding: clamp(0.45rem, 1.5vw, 0.6rem) clamp(1rem, 2.5vw, 1.3rem);
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      touch-action: manipulation;
+    }
+
+    .toggle-btn:hover, .toggle-btn:active {
+      background: #b48c5c;
+      color: white;
+      border-color: #8b6f4c;
+    }
+
+    .hidden-text {
+      display: none;
+      margin-top: 1rem;
+      padding: clamp(0.8rem, 2.2vw, 1rem);
+      background: #e8e0d5;
+      border-radius: 16px;
+      border-right: 4px solid #2a5a4a;
+    }
+
+    .hidden-text.show {
+      display: block;
+    }
+
+    /* الجدول */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 20px;
+      margin: 1.2rem 0;
+    }
+
+    .match-table {
+      width: 100%;
+      min-width: 260px;
+      border-collapse: collapse;
+      background: #fdfaf5;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+      font-size: clamp(0.85rem, 2.2vw, 1rem);
+    }
+
+    .match-table th {
+      background: #2a5a4a;
+      color: white;
+      padding: clamp(0.5rem, 1.5vw, 0.8rem);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .match-table td {
+      padding: clamp(0.5rem, 1.5vw, 0.8rem);
+      border-bottom: 1px solid #e6d9c8;
+      text-align: center;
+    }
+
+    .match-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* قسم الاختبارات */
+    .quiz-section {
+      margin: clamp(1.5rem, 4vw, 2.5rem) 0;
+    }
+
+    .quiz-box {
+      background: #ffffffec;
+      border-radius: clamp(18px, 4vw, 28px);
+      padding: clamp(1.1rem, 3vw, 2rem);
+      margin-bottom: clamp(1rem, 3vw, 1.8rem);
+      border: 1px solid #e6d9c8;
+      box-shadow: 0 10px 24px -14px rgba(60, 40, 20, 0.2);
+    }
+
+    .quiz-question {
+      font-size: clamp(1rem, 2.8vw, 1.25rem);
+      font-weight: 700;
+      color: #2a5a4a;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .quiz-question .qnum {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #b48c5c;
+      color: #fff;
+      width: 1.8em;
+      height: 1.8em;
+      border-radius: 50%;
+      font-size: 0.8em;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.5rem, 1.5vw, 0.8rem);
+      margin: 1.2rem 0;
+    }
+
+    .quiz-option {
+      background: #f2ede4;
+      border: 2px solid transparent;
+      padding: clamp(0.6rem, 1.8vw, 0.8rem) clamp(1rem, 2.5vw, 1.6rem);
+      border-radius: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: #2d2a24;
+      font-size: clamp(0.9rem, 2.3vw, 1rem);
+      text-align: right;
+      touch-action: manipulation;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      background: #e6d9c8;
+    }
+
+    .quiz-option.correct {
+      background: #2a5a4a;
+      color: white;
+      border-color: #1e3a2f;
+    }
+
+    .quiz-option.wrong {
+      background: #c25734;
+      color: white;
+      border-color: #8b3e22;
+    }
+
+    .quiz-option:disabled {
+      cursor: default;
+      opacity: 0.85;
+    }
+
+    .quiz-feedback {
+      font-weight: 600;
+      margin-top: 0.8rem;
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+      line-height: 1.5;
+      min-height: 1.5em;
+    }
+
+    .divider {
+      height: 3px;
+      background: linear-gradient(90deg, #b48c5c, #e6d9c8, #b48c5c);
+      margin: clamp(1.5rem, 4vw, 2.5rem) 0;
+      border-radius: 10px;
+      opacity: 0.6;
+    }
+
+    .footnote {
+      font-size: clamp(0.78rem, 2vw, 0.9rem);
+      color: #7a6a56;
+      margin-top: 0.6rem;
+      font-style: italic;
+    }
+
+    ul {
+      margin-right: 1.3rem;
+      margin-top: 0.6rem;
+    }
+
+    ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* ===== الفوتر ===== */
+    .site-footer {
+      background: linear-gradient(135deg, #1e3a2f 0%, #2a5a4a 100%);
+      color: #e8e0d5;
+      border-radius: clamp(18px, 4vw, 28px) clamp(18px, 4vw, 28px) 0 0;
+      margin-top: clamp(2rem, 5vw, 3rem);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.2rem, 3vw, 2rem);
+      box-shadow: 0 -10px 30px -15px rgba(30, 58, 47, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #b48c5c, #e6b85e, #b48c5c);
+    }
+
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 1.5rem);
+      text-align: center;
+    }
+
+    .footer-author {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 700;
+      color: #ffe6b3;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-author .icon {
+      font-size: 1.4em;
+    }
+
+    .footer-author span.name {
+      color: #ffffff;
+      background: rgba(180, 140, 92, 0.35);
+      padding: 0.15rem 0.9rem;
+      border-radius: 40px;
+      border: 1px solid rgba(230, 184, 94, 0.6);
+    }
+
+    .footer-share {
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+      color: #d4c8b5;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(0.6rem, 2vw, 1rem);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(230, 184, 94, 0.7);
+      color: #ffe6b3;
+      padding: clamp(0.5rem, 1.8vw, 0.7rem) clamp(1rem, 2.8vw, 1.4rem);
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+
+    .footer-btn:hover, .footer-btn:active {
+      background: #b48c5c;
+      color: #ffffff;
+      border-color: #ffe6b3;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px -8px #000;
+    }
+
+    .footer-btn.whatsapp {
+      background: rgba(37, 211, 102, 0.15);
+      border-color: #25d366;
+      color: #a8f0c0;
+    }
+
+    .footer-btn.whatsapp:hover, .footer-btn.whatsapp:active {
+      background: #25d366;
+      color: #ffffff;
+      border-color: #25d366;
+    }
+
+    .footer-bottom {
+      margin-top: clamp(1.2rem, 3vw, 1.8rem);
+      padding-top: clamp(0.8rem, 2.5vw, 1.2rem);
+      border-top: 1px solid rgba(230, 217, 200, 0.2);
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
+      color: #a89c8a;
+      text-align: center;
+      width: 100%;
+    }
+
+    .footer-bottom .phone {
+      color: #ffe6b3;
+      font-weight: 600;
+      direction: ltr;
+      display: inline-block;
+      unicode-bidi: embed;
+    }
+
+    /* شاشات صغيرة جداً */
+    @media (max-width: 480px) {
+      .card:hover {
+        transform: none;
+      }
+      .badge {
+        margin-left: 0;
+        display: block;
+        width: fit-content;
+        margin-top: 0.4rem;
+      }
+      .quiz-option {
+        border-radius: 12px;
+      }
+      .site-footer {
+        border-radius: 16px 16px 0 0;
+      }
+    }
+
+    /* تقليل الحركة */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>النَّعْت</h1>
+  <div class="subhead">اسمٌ يصفُ ما قبله — ليس رُكناً أساسياً من أركان الجملة — يأتي بعد تمام الأركان</div>
+
+  <!-- تعريف عام -->
+  <div class="card" style="background: #f3efe8;">
+    <p style="font-size: clamp(1rem, 2.7vw, 1.2rem);"><span class="highlight">النعت (الصفة)</span> هو اسمٌ يصفُ (ينعت) ما قبله (المنعوت/الموصوف)، وليس ركناً أساسياً من أركان الجملة. يأتي بعد تمام أركان الجملة الاسمية أو الفعلية.</p>
+    <p style="margin-top:0.8rem;"><span class="badge">أنواع النعت</span> مفرد – جملة اسمية – جملة فعلية – شبه جملة – سببي</p>
+  </div>
+
+  <!-- النعت المفرد -->
+  <h2>١. النعت المفرد</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>أركانه <span>المنعوت + النعت</span></h4>
+      <p>يجب أن يكون النعت المفرد:</p>
+      <ul>
+        <li><strong>يصف</strong> ما قبله (المنعوت)</li>
+        <li><strong>يطابق</strong> المنعوت في 4 أجزاء:</li>
+      </ul>
+      <div class="table-wrap">
+        <table class="match-table">
+          <tr><th>المطابقة في</th><th>مثال</th></tr>
+          <tr><td>الإعراب (رفع/نصب/جر)</td><td>الطالبُ المبدعُ</td></tr>
+          <tr><td>العدد (مفرد/مثنى/جمع)</td><td>طالبان مبدعان</td></tr>
+          <tr><td>النوع (مذكر/مؤنث)</td><td>طالبة مبدعة</td></tr>
+          <tr><td>التعريف أو التنكير</td><td>الطالب المبدع / طالب مبدع</td></tr>
+        </table>
+      </div>
+      <p style="margin-top:0.8rem;"><strong>فضلة:</strong> يمكن حذفه دون التأثير في معنى الجملة أو أركانها.</p>
+    </div>
+
+    <div class="card">
+      <h4>أمثلة تطبيقية</h4>
+      <div class="example">الطالبُ <span class="highlight">المبدعُ</span> عظيمٌ</div>
+      <p>المبدع: نعت مرفوع بالضمة، يصف الطالب، ويطابقه في الإعراب والإفراد والتذكير والتعريف. فضلة لأن الجملة تمت بـ (الطالب مبتدأ + عظيم خبر).</p>
+      <div class="example">قرأتُ قصتين <span class="highlight">رائعتين</span></div>
+      <p>رائعتين: نعت منصوب بالياء (لأنه مثنى).</p>
+      <button class="toggle-btn" onclick="toggle('more-examples', this)">عرض المزيد من الأمثلة ▼</button>
+      <div id="more-examples" class="hidden-text">
+        <div class="example">أحمد طالبٌ <span class="highlight">مهذبٌ رائعٌ خلوقٌ</span></div>
+        <p>يمكن للنعت أن يتعدد ويصف منعوتاً واحداً. (كلها نعوت مرفوعة).</p>
+        <div class="example warning">⚠️ إحذر: كان الطالب <span class="highlight">مهذباً رائعاً محترماً</span></div>
+        <p>هذه أخبار كان وليست نعوتاً (يتعدد خبر كان).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- نقاط مهمة في النعت المفرد -->
+  <h3>نقاط مهمة</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>كل + معرفتين</h4>
+      <div class="example">الحقُّ <span class="highlight">كلُّ</span> الحقِّ في العمل الجاد</div>
+      <p><strong>كل:</strong> نعت مرفوع بالضمة للكلمة الأولى (الحق)، والكلمة الثانية (الحق) مضاف إليه.</p>
+    </div>
+
+    <div class="card">
+      <h4>اسم الموصول بعد معرفة</h4>
+      <div class="example">يعجبني الكتابُ <span class="highlight">الذي</span> أقرأه</div>
+      <p><strong>الذي:</strong> اسم موصول مبني في محل رفع نعت.</p>
+    </div>
+
+    <div class="card">
+      <h4>اسم الإشارة بعد معرفة</h4>
+      <div class="example">قرأتُ القصةَ <span class="highlight">هذه</span></div>
+      <p><strong>هذه:</strong> اسم إشارة مبني في محل نصب نعت.</p>
+    </div>
+
+    <div class="card">
+      <h4>بن / بنت بين علمين</h4>
+      <div class="example">عمرُ <span class="highlight">بنُ</span> الخطاب رجل عظيم</div>
+      <p><strong>بن:</strong> نعت مرفوع بالضمة.</p>
+    </div>
+
+    <div class="card">
+      <h4>أيها / أيتها + ال</h4>
+      <div class="example">أيها <span class="highlight">المعلمون</span>، اشرحوا بضمير</div>
+      <p><strong>المعلمون:</strong> نعت مرفوع بالواو.</p>
+    </div>
+
+    <div class="card">
+      <h4>علم يليه لقب معرفة</h4>
+      <div class="example">يا عمرَ <span class="highlight">الفاروقُ</span>، كم أنت عظيم</div>
+      <p><strong>الفاروق:</strong> نعت (لأنه لقب معرفة بعد علم).</p>
+      <div class="example warning">⚠️ عكسها: الفاروقُ <span class="highlight">عمرُ</span> رجل عظيم</div>
+      <p><strong>عمر:</strong> بدل مطابق مرفوع (لأن صاحب اللقب جاء بعد اللقب).</p>
+    </div>
+
+    <div class="card">
+      <h4>يا + اسم إشارة + (ال + اسم)</h4>
+      <div class="example">يا هذا <span class="highlight">المعلمُ</span>، كن مخلصاً</div>
+      <p><strong>المعلم:</strong> نعت مرفوع بالضمة.</p>
+    </div>
+
+    <div class="card">
+      <h4>نكرة + (غير / مثل) + مضاف إليه</h4>
+      <div class="example">هذه بنتٌ <span class="highlight">غيرُ</span> خلوقة</div>
+      <p><strong>غير:</strong> نعت مرفوع بالضمة.</p>
+    </div>
+
+    <div class="card">
+      <h4>نكرة + نكرة = نعت</h4>
+      <div class="example">هذا طالبٌ <span class="highlight">متميزٌ</span></div>
+      <p><strong>متميز:</strong> نعت مرفوع بالضمة.</p>
+      <div class="example warning">⚠️ لكن: هذا طالبُ <span class="highlight">علمٍ</span></div>
+      <p><strong>علم:</strong> مضاف إليه مجرور (لأنها حددت نوع الطالب، وليست صفة).</p>
+    </div>
+
+    <div class="card">
+      <h4>تأخر النعت بعد المنعوت</h4>
+      <div class="example">يعجبني طالبُ المدرسةِ <span class="highlight">المتميزُ</span></div>
+      <p>المتميز: نعت مرفوع يصف الطالب.</p>
+      <div class="example">يعجبني طالبُ المدرسةِ <span class="highlight">المتميزةِ</span></div>
+      <p>المتميزة: نعت مجرور يصف المدرسة.</p>
+      <p class="footnote">ركز على ماذا يصف النعت!</p>
+    </div>
+  </div>
+
+  <!-- جمع غير عاقل -->
+  <div class="note">
+    <strong>ملاحظة:</strong> إن كان المنعوت جمعاً لغير العاقل، يمكن للنعت أن يكون إما (مفرد مؤنث) أو (جمع مؤنث).<br>
+    مثال: هذه جبالٌ <span class="highlight">راسيةٌ</span> / <span class="highlight">راسياتٌ</span> — هذه أقلامٌ <span class="highlight">رائعةٌ</span> / <span class="highlight">رائعاتٌ</span>.<br>
+    وتكون شروط المطابقة ناقصة إذا كان النعت مفرداً مؤنثاً.
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- نعت الجملة الإسمية -->
+  <h2>٢. نعت الجملة الاسمية</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>الشروط</h4>
+      <p><strong>المنعوت:</strong> نكرة – متمم لأركان الجملة.</p>
+      <p><strong>النعت:</strong> جملة اسمية تصف المنعوت، تحتوي على رابط (ضمير) يعود على المنعوت ويطابقه في النوع والعدد، وهي فضلة.</p>
+    </div>
+    <div class="card">
+      <h4>أمثلة</h4>
+      <div class="example">هذا معلمٌ <span class="highlight">خلقُه رائعٌ</span></div>
+      <p>خلقه: مبتدأ ثانٍ مرفوع، والضمير في محل جر مضاف إليه. رائع: خبر ثانٍ مرفوع. والجملة الاسمية في محل رفع نعت.</p>
+      <div class="example">هذا رجلٌ <span class="highlight">له عقلٌ مميزٌ</span></div>
+      <p>له: خبر شبه جملة مقدم. عقل: مبتدأ ثانٍ مؤخر مرفوع. والجملة في محل رفع نعت.</p>
+      <div class="note" style="margin-top:1rem;">إحذر التقديم والتأخير في الجملة الاسمية.</div>
+    </div>
+  </div>
+
+  <!-- نعت الجملة الفعلية -->
+  <h2>٣. نعت الجملة الفعلية</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>الشروط</h4>
+      <p><strong>المنعوت:</strong> نكرة – متمم لأركان الجملة.</p>
+      <p><strong>النعت:</strong> جملة فعلية (فعل + فاعل + أحياناً مفعول به) مع رابط يعود على المنعوت ويطابقه في النوع والعدد. الرابط ضمير إما ظاهر متصل أو مستتر.</p>
+    </div>
+    <div class="card">
+      <h4>أمثلة</h4>
+      <div class="example">سرتني طالبةٌ <span class="highlight">تلتزمُ بالأخلاق</span></div>
+      <p>تلتزم بالأخلاق: جملة فعلية في محل رفع نعت. الرابط: ضمير مستتر تقديره (هي).</p>
+      <div class="example">يعجبني لاعبان <span class="highlight">يتصفان بالمهارة</span></div>
+      <p>يتصفان: جملة فعلية في محل رفع نعت. الرابط: ألف الاثنين في الفعل، تعود على اللاعبين وتطابقهما.</p>
+    </div>
+  </div>
+
+  <!-- نعت شبه الجملة -->
+  <h2>٤. نعت شبه الجملة</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>الشروط</h4>
+      <p><strong>المنعوت:</strong> نكرة – متمم لأركان الجملة.</p>
+      <p><strong>النعت:</strong> شبه جملة (جار ومجرور أو ظرف) – لا يوجد رابط.</p>
+    </div>
+    <div class="card">
+      <h4>أمثلة</h4>
+      <div class="example">شاهدتُ عصفوراً <span class="highlight">بين الأغصان</span></div>
+      <p>بين: ظرف مكان منصوب، وشبه الجملة في محل نصب نعت. الأغصان: مضاف إليه مجرور.</p>
+      <div class="example">أقبل رجلٌ <span class="highlight">في سرورٍ</span></div>
+      <p>سرور: اسم مجرور، والجار والمجرور شبه جملة في محل رفع نعت.</p>
+    </div>
+  </div>
+
+  <!-- النعت السببي -->
+  <h2>٥. النعت السببي</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>البنية</h4>
+      <p><strong>منعوت + نعت سببي (مفرد دائماً – مشتق) + اسم + ضمير رابط يعود على المنعوت.</strong></p>
+      <p>يطابق المنعوت في شرطين فقط: <span class="highlight">الإعراب</span> و <span class="highlight">التعريف أو التنكير</span>.</p>
+      <p><strong>المشتقات:</strong> اسم الفاعل، صيغة المبالغة (فَعِل – فعيل – فعول – مفعال – فعّال)، اسم المفعول (مفعول – مفعل).</p>
+    </div>
+    <div class="card">
+      <h4>مثال تطبيقي</h4>
+      <div class="example">يعجبني طالبٌ <span class="highlight">عظيمٌ خلقُه</span></div>
+      <p>طالب: المنعوت (فاعل مرفوع).<br>
+      عظيم: نعت سببي مرفوع بالضمة.<br>
+      خلقه: فاعل مرفوع بالضمة، والضمير مبني في محل جر مضاف إليه (عائد على طالب).</p>
+      <div class="note">لاحظ: النعت السببي وصف المنعوت من خلال شيء متصل به (خلقه).</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- قسم الاختبارات -->
+  <h2>اختبر فهمك 🧠</h2>
+  <div class="quiz-section" id="quizSection"></div>
+  <button class="toggle-btn" onclick="resetAllQuizzes()" style="margin-bottom:1rem;">🔄 إعادة جميع الأسئلة</button>
+
+</div>
+
+<!-- الفوتر -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-author">
+      <span class="icon">✍️</span>
+      بواسطة <span class="name">سامر كريم</span>
+    </div>
+
+    <div class="footer-share">
+      📢 شارك هذه الصفحة مع زملائك.
+    </div>
+
+    <div class="footer-actions">
+      <button class="footer-btn" onclick="sharePage()">
+        <span>🔗</span> مشاركة الصفحة
+      </button>
+      <a class="footer-btn whatsapp" href="https://wa.me/201143796269?text=السلام%20عليكم%20سامر،%20استفدت%20من%20شرح%20النعت%20التفاعلي%20وأحببت%20مشاركته%20معك" target="_blank" rel="noopener">
+        <span>💬</span> تواصل واتساب
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      للتواصل: <span class="phone">+20 114 379 6269</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // إظهار/إخفاء الأمثلة
+  function toggle(id, btn) {
+    const el = document.getElementById(id);
+    el.classList.toggle('show');
+    if (el.classList.contains('show')) {
+      btn.textContent = 'إخفاء الأمثلة ▲';
+    } else {
+      btn.textContent = 'عرض المزيد من الأمثلة ▼';
+    }
+  }
+
+  // ====== الأسئلة ======
+  const quizData = [
+    {
+      question: 'في جملة: «شاهدتُ حديقةً أزهارُها متفتحةٌ» — ما إعراب «أزهارها متفتحة»؟',
+      options: ['نعت جملة اسمية في محل نصب', 'نعت مفرد منصوب', 'نعت سببي منصوب', 'خبر ثانٍ'],
+      correct: 0
+    },
+    {
+      question: 'في جملة: «قرأتُ قصتين رائعتين» — ما إعراب «رائعتين»؟',
+      options: ['نعت منصوب بالياء', 'نعت مرفوع بالضمة', 'مفعول به منصوب بالياء', 'خبر منصوب بالياء'],
+      correct: 0
+    },
+    {
+      question: '«هذا طالبٌ متميزٌ» — «متميزٌ» هنا:',
+      options: ['نعت مرفوع', 'مضاف إليه مجرور', 'خبر مرفوع', 'بدل مرفوع'],
+      correct: 0
+    },
+    {
+      question: '«هذا طالبُ علمٍ» — «علمٍ» هنا:',
+      options: ['مضاف إليه مجرور', 'نعت مجرور', 'خبر مجرور', 'بدل مجرور'],
+      correct: 0
+    },
+    {
+      question: '«سرتني طالبةٌ تلتزمُ بالأخلاق» — جملة «تلتزم بالأخلاق»:',
+      options: ['نعت جملة فعلية في محل رفع', 'نعت جملة فعلية في محل نصب', 'خبر ثانٍ', 'حال منصوب'],
+      correct: 0
+    },
+    {
+      question: '«شاهدتُ عصفوراً بين الأغصان» — «بين الأغصان»:',
+      options: ['نعت شبه جملة في محل نصب', 'نعت شبه جملة في محل رفع', 'خبر شبه جملة', 'مفعول به ثانٍ'],
+      correct: 0
+    },
+    {
+      question: '«يعجبني طالبٌ عظيمٌ خلقُه» — «عظيم»:',
+      options: ['نعت سببي مرفوع', 'نعت مفرد مرفوع', 'خبر مرفوع', 'صفة مشبهة'],
+      correct: 0
+    },
+    {
+      question: 'في «يا عمرَ الفاروقُ» — «الفاروق»:',
+      options: ['نعت مرفوع', 'بدل مطابق مرفوع', 'خبر مرفوع', 'عطف بيان'],
+      correct: 0
+    },
+    {
+      question: 'في «الفاروقُ عمرُ رجل عظيم» — «عمر»:',
+      options: ['بدل مطابق مرفوع', 'نعت مرفوع', 'مبتدأ ثانٍ', 'خبر مرفوع'],
+      correct: 0
+    },
+    {
+      question: '«أيها المعلمون، اشرحوا بضمير» — «المعلمون»:',
+      options: ['نعت مرفوع بالواو', 'نعت منصوب بالياء', 'منادى مرفوع', 'بدل مرفوع بالواو'],
+      correct: 0
+    },
+    {
+      question: '«هذه بنتٌ غيرُ خلوقةٍ» — «غير»:',
+      options: ['نعت مرفوع بالضمة', 'مضاف إليه مجرور', 'خبر مرفوع', 'صفة مجرورة'],
+      correct: 0
+    },
+    {
+      question: '«الحقُّ كلُّ الحقِّ في العمل الجاد» — «كل»:',
+      options: ['نعت مرفوع، و«الحق» الثانية مضاف إليه', 'توكيد معنوي مرفوع', 'بدل مرفوع', 'مبتدأ ثانٍ'],
+      correct: 0
+    },
+    {
+      question: '«يعجبني الكتابُ الذي أقرأه» — «الذي»:',
+      options: ['اسم موصول مبني في محل رفع نعت', 'اسم موصول مبني في محل جر نعت', 'بدل مرفوع', 'خبر مرفوع'],
+      correct: 0
+    },
+    {
+      question: '«هذه جبالٌ راسيةٌ» — النعت «راسية»:',
+      options: ['نعت مفرد مؤنث (المطابقة ناقصة)', 'نعت جمع مؤنث', 'خبر مرفوع', 'بدل مرفوع'],
+      correct: 0
+    },
+    {
+      question: '«كان الطالب مهذباً رائعاً محترماً» — «رائعاً» و«محترماً»:',
+      options: ['أخبار كان (وليست نعوتاً)', 'نعوت منصوبة', 'بدل منصوب', 'حال منصوب'],
+      correct: 0
+    },
+    {
+      question: '«قرأتُ القصةَ هذه» — «هذه»:',
+      options: ['اسم إشارة مبني في محل نصب نعت', 'اسم إشارة مبني في محل رفع نعت', 'بدل منصوب', 'خبر مرفوع'],
+      correct: 0
+    }
+  ];
+
+  // بناء الاختبارات
+  function renderQuizzes() {
+    const container = document.getElementById('quizSection');
+    container.innerHTML = '';
+
+    quizData.forEach((q, index) => {
+      const box = document.createElement('div');
+      box.className = 'quiz-box';
+
+      const qDiv = document.createElement('div');
+      qDiv.className = 'quiz-question';
+      qDiv.innerHTML = `<span class="qnum">${index + 1}</span> ${q.question}`;
+
+      const optsDiv = document.createElement('div');
+      optsDiv.className = 'quiz-options';
+
+      const feedback = document.createElement('div');
+      feedback.className = 'quiz-feedback';
+      feedback.id = `feedback-${index}`;
+
+      q.options.forEach((optText, optIndex) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.type = 'button';
+        btn.textContent = optText;
+        btn.dataset.index = optIndex;
+        btn.addEventListener('click', () => handleAnswer(index, optIndex, optsDiv, feedback));
+        optsDiv.appendChild(btn);
+      });
+
+      box.appendChild(qDiv);
+      box.appendChild(optsDiv);
+      box.appendChild(feedback);
+      container.appendChild(box);
+    });
+  }
+
+  // معالجة الإجابة
+  function handleAnswer(qIndex, selectedIndex, optsDiv, feedback) {
+    const q = quizData[qIndex];
+    const buttons = optsDiv.querySelectorAll('.quiz-option');
+
+    if (optsDiv.dataset.answered === 'true') return;
+
+    optsDiv.dataset.answered = 'true';
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selectedIndex === q.correct;
+
+    buttons[q.correct].classList.add('correct');
+    if (!isCorrect) {
+      buttons[selectedIndex].classList.add('wrong');
+    }
+
+    if (isCorrect) {
+      feedback.textContent = '✅ إجابة صحيحة!';
+      feedback.style.color = '#1e3a2f';
+    } else {
+      feedback.textContent = `❌ إجابة غير صحيحة. الصواب: «${q.options[q.correct]}»`;
+      feedback.style.color = '#a53f22';
+    }
+  }
+
+  // إعادة جميع الأسئلة
+  function resetAllQuizzes() {
+    renderQuizzes();
+    window.scrollTo({ top: document.querySelector('#quizSection').offsetTop - 20, behavior: 'smooth' });
+  }
+
+  // مشاركة الصفحة
+  function sharePage() {
+    const shareData = {
+      title: 'النعت | شرح تفاعلي',
+      text: 'شرح تفاعلي رائع للنعت وأنواعه — بواسطة سامر كريم',
+      url: window.location.href
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).catch(() => {
+        copyLink();
+      });
+    } else {
+      copyLink();
+    }
+  }
+
+  // نسخ الرابط كبديل
+  function copyLink() {
+    const url = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('✅ تم نسخ رابط الصفحة، شاركه مع أصدقائك!');
+      }).catch(() => {
+        fallbackCopy(url);
+      });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      alert('✅ تم نسخ رابط الصفحة، شاركه مع أصدقائك!');
+    } catch (e) {
+      prompt('انسخ الرابط يدوياً:', text);
+    }
+    document.body.removeChild(ta);
+  }
+
+  // تشغيل عند التحميل
+  renderQuizzes();
+</script>
+
+</body>
+</html>
