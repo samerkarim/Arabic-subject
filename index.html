@@ -762,7 +762,7 @@
       <button class="footer-btn" onclick="sharePage()">
         <span>🔗</span> مشاركة الصفحة
       </button>
-      <a class="footer-btn whatsapp" href="https://wa.me/201143796269?text=السلام%20عليكم%20سامر،%20استفدت%20من%20شرح%20النعت%20التفاعلي%20وأحببت%20مشاركته%20معك" target="_blank" rel="noopener">
+      <a class="footer-btn whatsapp" href="https://wa.me/201143796269?text=السلام%20عليكم%20سامر،%20استفدت%20من%20شرح%20النعت%20التفاعلي%20على%20هذا%20الرابط%20وأحببت%20مشاركته%20معك:%20https%3A%2F%2Fsamerkarim.github.io%2FArabic-subject%2F" target="_blank" rel="noopener">
         <span>💬</span> تواصل واتساب
       </a>
     </div>
@@ -938,12 +938,15 @@
     window.scrollTo({ top: document.querySelector('#quizSection').offsetTop - 20, behavior: 'smooth' });
   }
 
+  // ====== رابط الصفحة الثابت ======
+  const PAGE_URL = 'https://samerkarim.github.io/Arabic-subject/';
+
   // مشاركة الصفحة
   function sharePage() {
     const shareData = {
       title: 'النعت | شرح تفاعلي',
       text: 'شرح تفاعلي رائع للنعت وأنواعه — بواسطة سامر كريم',
-      url: window.location.href
+      url: PAGE_URL
     };
 
     if (navigator.share) {
@@ -957,15 +960,14 @@
 
   // نسخ الرابط كبديل
   function copyLink() {
-    const url = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(() => {
+      navigator.clipboard.writeText(PAGE_URL).then(() => {
         alert('✅ تم نسخ رابط الصفحة، شاركه مع أصدقائك!');
       }).catch(() => {
-        fallbackCopy(url);
+        fallbackCopy(PAGE_URL);
       });
     } else {
-      fallbackCopy(url);
+      fallbackCopy(PAGE_URL);
     }
   }
 
